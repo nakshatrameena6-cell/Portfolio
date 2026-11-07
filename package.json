@@ -1,0 +1,31 @@
+{
+  "name": "nakshatra-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio of Nakshatra S.V — CSE undergraduate, Sri Shakthi Institute of Engineering and Technology.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve@14 out -l 3000",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && node scripts/verify-content.mjs",
+    "verify": "node scripts/verify-content.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "^22.10.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.4.5",
+    "sharp": "^0.34.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "^5.9.0"
+  }
+}
