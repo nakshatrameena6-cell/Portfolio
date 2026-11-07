@@ -12,7 +12,7 @@ export function SoundToggle() {
       className="bar__sound"
       aria-pressed={on}
       aria-label="Sound effects"
-      title={on ? "Sound on — click to mute" : "Sound off — click to turn on"}
+      title={on ? "Sound on, click to mute" : "Sound off, click to turn on"}
       data-on={on}
       data-no-sfx
       onClick={() => {

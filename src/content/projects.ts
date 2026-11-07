@@ -11,7 +11,7 @@ export const projects: Project[] = [
     tier: "feature",
     n: "01",
     title: "Suraksha",
-    kicker: "Threat detection with a response layer that can say no",
+    kicker: "Threat detection with a safety-gated response layer",
     repo: "Cyber-threat-detection",
     period: { from: "2026-09-07", to: "2026-10-24" },
     authorship: "lead",
@@ -25,21 +25,21 @@ export const projects: Project[] = [
     visual: "gates",
     facts: [
       { label: "Safety gates", value: "10", src: { repo: "Cyber-threat-detection", path: "backend/response/safety_gates.py" } },
-      { label: "Response tiers", value: "3 — A, B, C", src: { repo: "Cyber-threat-detection", path: "backend/response/policy_engine.py" } },
+      { label: "Response tiers", value: "3 (A, B, C)", src: { repo: "Cyber-threat-detection", path: "backend/response/policy_engine.py" } },
       { label: "API routes", value: "22", src: { repo: "Cyber-threat-detection", path: "backend/main.py" } },
       { label: "Test functions", value: "111", src: { repo: "Cyber-threat-detection", path: "tests/test_end_to_end.py" } },
     ],
     caseStudy: {
       problem:
-        "Detection pipelines are easy to demo and hard to trust. The moment a system is allowed to block an address or isolate a host, a false positive stops being a chart artefact and becomes an outage. The brief Suraksha set itself: detect, correlate and respond — while making every automated action bounded, reversible and auditable.",
+        "Detection pipelines are easy to demo and hard to trust. The moment a system is allowed to block an address or isolate a host, a false positive stops being a chart artefact and becomes an outage. The brief Suraksha set itself: detect, correlate and respond, while making every automated action bounded, reversible and auditable.",
       approach:
-        "The project started on paper: a PRD, requirements matrix, threat model, API specification and architecture document came before the pipeline code. Requirements carry REQ-* identifiers that map to modules and to tests. The pipeline itself is staged — normalise, score (rules plus an Isolation Forest), correlate into incidents, classify into a response tier, pass the gates, execute, verify, audit.",
+        "The project started on paper: a PRD, requirements matrix, threat model, API specification and architecture document came before the pipeline code. Requirements carry REQ-* identifiers that map to modules and to tests. The pipeline itself is staged: normalise, score (rules plus an Isolation Forest), correlate into incidents, classify into a response tier, pass the gates, execute, verify, audit.",
       architectureNote:
         "The drawing is the response path only. Each gate is a separate check that can end the run; an action that clears all ten is executed and then verified by an independent component.",
       decisions: [
         {
           title: "Three response tiers",
-          body: "Tier A only alerts. Tier B may take bounded actions such as blocking an IP or suspending a session, automatically, when confidence is at least 0.75 and every gate passes. Tier C — endpoint isolation, or anything touching a critical asset — always needs a human.",
+          body: "Tier A only alerts. Tier B may take bounded actions such as blocking an IP or suspending a session, automatically, when confidence is at least 0.75 and every gate passes. Tier C (endpoint isolation, or anything touching a critical asset) always needs a human.",
           src: { repo: "Cyber-threat-detection", path: "backend/response/policy_engine.py" },
         },
         {
@@ -76,7 +76,7 @@ export const projects: Project[] = [
         },
         {
           title: "Metrics that disagree with themselves",
-          body: "A single confusion matrix is derived once, and an invariant — TP + FP + TN + FN equals the number of unique events — is asserted so the prose, the table and the dashboard cannot drift apart.",
+          body: "A single confusion matrix is derived once, and an invariant (TP + FP + TN + FN equals the number of unique events) is asserted so the prose, the table and the dashboard cannot drift apart.",
           src: { repo: "Cyber-threat-detection", path: "backend/evaluation/metrics.py" },
         },
         {
@@ -87,7 +87,7 @@ export const projects: Project[] = [
       ],
       outcome: [
         "A working end-to-end system: ingestion API, SQLite persistence, incident queue, enforcement monitor, filterable audit trail, an attack simulator and an evaluation tab, backed by 111 test functions.",
-        "The built-in benchmark is 33 hand-labelled events, and the system reports perfect precision and recall on it. That shows the pipeline logic is internally consistent. It is not evidence of real-world detection accuracy — and the public-dataset results are left pending rather than filled in.",
+        "The built-in benchmark is 33 hand-labelled events, and the system reports perfect precision and recall on it. That shows the pipeline logic is internally consistent. It is not evidence of real-world detection accuracy, and the public-dataset results are left pending rather than filled in.",
       ],
     },
   },
@@ -105,20 +105,20 @@ export const projects: Project[] = [
     problem:
       "Cloned voices travel over bad channels. A detector that works on clean studio audio can fail on an 8 kHz phone call or a WhatsApp voice note, so the evaluation has to include the damage.",
     summary:
-      "An offline Python detector and scoring API for Hindi, Tamil, English and Hinglish speech, evaluated on clean audio and three degraded channels, with unseen text-to-speech generators kept out of training — plus a React workspace for uploading audio and reading the evidence behind a verdict.",
+      "An offline Python detector and scoring API for Hindi, Tamil, English and Hinglish speech, evaluated on clean audio and three degraded channels, with unseen text-to-speech generators kept out of training, plus a React workspace for uploading audio and reading the evidence behind a verdict.",
     stack: ["Python", "FastAPI", "NumPy", "Pydantic", "pytest", "Docker", "React", "TypeScript", "Vite", "Tailwind"],
     status:
       "Research-grade prototype on a small corpus (172 samples from 43 recordings). Not a production detector.",
     visual: "channels",
     facts: [
-      { label: "Languages", value: "4 — hi, ta, en, Hinglish", src: { repo: "truth-frame", path: "SPEC.md" } },
+      { label: "Languages", value: "4 (hi, ta, en, Hinglish)", src: { repo: "truth-frame", path: "SPEC.md" } },
       { label: "Channels", value: "clean + 3 degraded", src: { repo: "truth-frame", path: "src/audio_detection/degradation/channels.py" } },
-      { label: "Milestone reports", value: "M1 – M4", src: { repo: "truth-frame", path: "reports/m4/M4_REPORT.md" } },
+      { label: "Milestone reports", value: "M1 to M4", src: { repo: "truth-frame", path: "reports/m4/M4_REPORT.md" } },
       { label: "Test functions", value: "116", src: { repo: "truth-frame", path: "tests/test_m4_acceptance.py" } },
     ],
     caseStudy: {
       problem:
-        "Synthetic-speech detectors are usually reported on clean audio. In practice the audio that matters arrives compressed through telephony codecs and messaging apps. PandaMIND's question: how does a detector behave when the speaker is unseen, the generator is unseen and the channel is bad — in languages that mainstream benchmarks under-represent?",
+        "Synthetic-speech detectors are usually reported on clean audio. In practice the audio that matters arrives compressed through telephony codecs and messaging apps. PandaMIND's question: how does a detector behave when the speaker is unseen, the generator is unseen and the channel is bad, in languages that mainstream benchmarks under-represent?",
       approach:
         "Specification first, then a staged build. M1 froze the API contract behind a deterministic stub; M2 added a 10-dimensional waveform baseline; M3 the production pipeline with language detection, localisation and serving; M4 an independent acceptance pass. A versioned benchmark spec defines the languages, classes, generators, degradations and splits, so every later result is read against the same frame.",
       architectureNote:
@@ -126,7 +126,7 @@ export const projects: Project[] = [
       decisions: [
         {
           title: "Contract before model",
-          body: "M1 shipped the whole API with a scorer that hashes the audio bytes with SHA-256 — and it was labelled in plain words as a stub that does not represent real detection performance. Clients could integrate before any model existed, without anyone mistaking the numbers for results.",
+          body: "M1 shipped the whole API with a scorer that hashes the audio bytes with SHA-256, and it was labelled in plain words as a stub that does not represent real detection performance. Clients could integrate before any model existed, without anyone mistaking the numbers for results.",
           src: { repo: "truth-frame", path: "src/audio_detection/api/stub.py" },
         },
         {
@@ -187,7 +187,7 @@ export const projects: Project[] = [
     problem:
       "Health facilities report stock late and on paper, so shortages are noticed after they happen and surplus cannot be moved to where it is needed.",
     summary:
-      "A prototype that captures stock by voice, photo or form, forecasts demand, flags facilities close to stock-out, proposes redistribution, and puts every transfer in front of a reviewer who can approve, modify, reject or escalate it — with an audit trail.",
+      "A prototype that captures stock by voice, photo or form, forecasts demand, flags facilities close to stock-out, proposes redistribution, and puts every transfer in front of a reviewer who can approve, modify, reject or escalate it, with an audit trail.",
     stack: ["React", "TypeScript", "Vite", "Tailwind", "three.js", "MapLibre", "Recharts", "FastAPI", "SQLAlchemy", "OR-Tools", "Gemini API", "Playwright", "pytest"],
     status:
       "Prototype on seeded sample data; not deployed.",
@@ -200,9 +200,9 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       problem:
-        "Medicine stock-outs are rarely a pure supply problem; they are a visibility problem. Each facility sees only its own shelves, reporting lags, and moving stock between facilities is a judgement call with real consequences. MedEx connects those steps — capture, forecast, risk, redistribution, review, audit — into a single decision-support flow.",
+        "Medicine stock-outs are rarely a pure supply problem; they are a visibility problem. Each facility sees only its own shelves, reporting lags, and moving stock between facilities is a judgement call with real consequences. MedEx connects those steps (capture, forecast, risk, redistribution, review, audit) into a single decision-support flow.",
       approach:
-        "The project sets its principle first — AI recommends, humans decide — and defines a prototype scope around one primary journey: from data capture to prediction, risk detection, redistribution, human approval and audit. A FastAPI backend exposes one module per stage; a React front end gives each stage a screen, including a district map and a scenario simulator.",
+        "The project sets its principle first (AI recommends, humans decide) and defines a prototype scope around one primary journey: from data capture to prediction, risk detection, redistribution, human approval and audit. A FastAPI backend exposes one module per stage; a React front end gives each stage a screen, including a district map and a scenario simulator.",
       architectureNote:
         "The loop is the product: a recommendation is never an action. Approve, modify, reject and escalate all lead to the same audit record.",
       decisions: [
@@ -257,12 +257,12 @@ export const projects: Project[] = [
     period: { from: "2026-10-13", to: "2026-10-22" },
     authorship: "solo",
     problem:
-      "Browse and curate museum artefacts across civilisations — with the database, not the application, deciding what is valid, what is remembered and who can read it.",
+      "Browse and curate museum artefacts across civilisations, with the database, not the application, deciding what is valid, what is remembered and who can read it.",
     summary:
       "A Flask application over PostgreSQL on Supabase, written in plain parameterised SQL: eight tables, a denormalised view, a deletion-audit trigger, row-level security on every table, and a test suite that runs in a throwaway schema.",
     stack: ["Python", "Flask", "PostgreSQL", "Supabase", "psycopg2", "HTML/CSS/JS", "pytest"],
     status: "Coursework project with a written report.",
-    visual: "schema",
+    shot: { src: "/evidence/museum-er.webp", alt: "Entity-relationship diagram of the museum database: eight tables joined by one-to-many and many-to-many relationships.", w: 2200, h: 1513, caption: "The database's own ER diagram. Its column types still use SQLite notation; the live schema uses PostgreSQL identity columns." },
     facts: [
       { label: "Tables", value: "7 + audit log", src: { repo: "museum-artifact", path: "database.py" } },
       { label: "Also", value: "1 view · 1 trigger", src: { repo: "museum-artifact", path: "database.py" } },
@@ -273,7 +273,7 @@ export const projects: Project[] = [
       problem:
         "A database coursework project can be satisfied with tables and a few queries. This one sets a harder bar: make the schema itself responsible for integrity, history and access, so the application layer cannot get it wrong.",
       approach:
-        "Design the relations first — civilisations, categories, artifacts, curators, exhibitions and a many-to-many join — then write the constraints, view, trigger and security policy into the schema, and only then build the Flask routes and templates over plain SQL. A generated ER diagram and a written normalisation argument (1NF to 3NF) are part of the deliverable.",
+        "Design the relations first (civilisations, categories, artifacts, curators, exhibitions and a many-to-many join), then write the constraints, view, trigger and security policy into the schema, and only then build the Flask routes and templates over plain SQL. A generated ER diagram and a written normalisation argument (1NF to 3NF) are part of the deliverable.",
       architectureNote:
         "This is the project's own ER diagram. Its column types still use SQLite notation (INTEGER AUTOINCREMENT); the live schema uses PostgreSQL identity columns.",
       decisions: [
@@ -289,7 +289,7 @@ export const projects: Project[] = [
         },
         {
           title: "Plain SQL, always parameterised",
-          body: "psycopg2 with %s placeholders — no ORM, no SDK — with ILIKE search and explicit RETURNING id on inserts.",
+          body: "psycopg2 with %s placeholders, no ORM and no SDK, with ILIKE search and explicit RETURNING id on inserts.",
           src: { repo: "museum-artifact", path: "database.py" },
         },
         {
@@ -348,6 +348,7 @@ export const projects: Project[] = [
       "A React, TypeScript and Tailwind front end with login roles, live monitoring, video upload and reports. The live view plays scripted demo feeds with simulated detection overlays. A YOLOv8 and IoU-tracker backend was written early on but is not part of the current build.",
     stack: ["React", "TypeScript", "Vite", "Tailwind", "Framer Motion"],
     status: "Interface prototype. Detection shown in the UI is simulated.",
+    shot: { src: "/evidence/examseye-login.webp", alt: "Login screen of the ExamEye prototype with Admin and Teacher demo access.", w: 1600, h: 742 },
     facts: [],
   },
   {

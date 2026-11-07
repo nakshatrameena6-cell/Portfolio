@@ -8,14 +8,14 @@ import { site } from "@/content/site";
 import { sfx } from "@/lib/sound";
 
 const chapters = [
-  { id: "top", n: "00", label: "Opening" },
-  { id: "work", n: "01", label: "Selected work" },
-  { id: "about", n: "02", label: "About" },
-  { id: "contact", n: "03", label: "Contact" },
+  { id: "top", label: "Home" },
+  { id: "work", label: "Work" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
 ] as const;
 
 /** A separate page, listed after the home chapters. */
-const projectsLink = { href: "/work/", n: "→", label: "All projects" } as const;
+const projectsLink = { href: "/work/", label: "All projects" } as const;
 
 /**
  * Site navigation: a fixed glass top bar and a full-screen index sheet.
@@ -106,7 +106,7 @@ export function Nav() {
   return (
     <>
       <header className="bar">
-        <a href={onHome ? "#top" : "/"} className="bar__brand" aria-label="Nakshatra S.V — home">
+        <a href={onHome ? "#top" : "/"} className="bar__brand" aria-label="Nakshatra S.V, home">
           <Dial className="bar__dial" />
           <span>N.S.V</span>
         </a>
@@ -152,14 +152,12 @@ export function Nav() {
                   onClick={close}
                   aria-current={onHome && active === c.id ? "location" : undefined}
                 >
-                  <span className="sheet__n">{c.n}</span>
                   {c.label}
                 </a>
               </li>
             ))}
             <li style={{ ["--i" as string]: chapters.length }}>
               <a href={projectsLink.href} onClick={close} aria-current={onProjects ? "page" : undefined}>
-                <span className="sheet__n">{projectsLink.n}</span>
                 {projectsLink.label}
               </a>
             </li>
@@ -179,9 +177,6 @@ export function Nav() {
               </a>
             </li>
           ) : null}
-          <li style={{ ["--i" as string]: rows + 2 }}>
-            <span className="sheet__meta">Portfolio · Edition 2026</span>
-          </li>
         </ul>
       </div>
     </>

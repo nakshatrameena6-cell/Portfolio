@@ -1,4 +1,4 @@
-# Nakshatra S.V — Portfolio
+# Nakshatra S.V Portfolio
 
 A static, editorial portfolio for Nakshatra S.V (CSE undergraduate, Sri Shakthi Institute of
 Engineering and Technology). Built with Next.js 16 (App Router, static export), React 19,
@@ -19,16 +19,42 @@ npm run check      # lint + typecheck + content consistency
 ## Where things are
 
 ```
-src/content/        ← all facts live here, separate from presentation
+src/content/        all facts live here, separate from presentation
   site.ts           identity + contact config (email, LinkedIn)
   projects.ts       4 featured case studies + 7 supporting projects
-  capabilities.ts   technology × project evidence matrix
-src/components/     sections (Opening, WorkTeaser, About, Contact; Work, Also, Instruments)
-src/components/visuals/   per-project drawings (Gates, Channels, Loop, Plate)
+  logos.ts          GENERATED technology logos (npm run logos, from Simple Icons)
+src/components/     Opening (hero), Marquee, SelectedWork + WorkIndex, About, Contact,
+                    Gallery (cards, more builds, tools), bits (shared parts)
+src/components/visuals/   per-project diagrams (Gates, Channels, Loop)
 src/app/            routes: `/` (short landing), `/work` (all projects), `/work/[slug]` (case studies)
-scripts/            verify-content.mjs, optimise-images.mjs
+scripts/            verify-content.mjs, optimise-images.mjs, make-logos.mjs, capture-screenshots.mjs
 public/evidence/    the two genuine repository images used (optimised)
 ```
+
+## Structure
+
+- **Home** is one short scroll: a one-screen hero (the name as silk, one line, two actions), a slow
+  strip of the technologies used, an interactive project index (hover or focus a row and its preview
+  slides into a sticky panel), a single About statement, and Contact. Nothing else.
+- **/work** is an uneven grid of the four case studies, a disclosure list of smaller builds, and the
+  tools grouped by what they were used for.
+- **Case studies** use a label-left, text-right column layout with a sticky heading. No table of
+  contents, no numbering.
+- **Shape:** panels and cards are 16px radius; buttons, chips and pills are fully round. Nothing else
+  rounds. Copy uses no em or en dashes.
+
+## Real screenshots
+
+Each project can show a real capture instead of its diagram. Run the project locally, then:
+
+```bash
+npm i -D playwright && npx playwright install chromium   # once
+node scripts/capture-screenshots.mjs suraksha http://localhost:5173
+```
+
+The script writes `public/projects/<slug>.webp` and prints the `shot: { ... }` line to add to that
+project in `src/content/projects.ts` (write real alt text). Today the Museum Artifact Explorer and
+ExamEye already use real images from their repositories; the other projects use diagrams.
 
 ## Evidence policy
 
@@ -55,7 +81,7 @@ stripping).
 
 ## Design notes
 
-Direction: *digital editorial experimentalism* — a ruled ledger in the supplied palette:
+Direction: dark editorial, in the supplied palette:
 **Lavender `#CBB3E8`**, **Chartreuse `#D4FF3F`**, **Tomato Red `#E34234`**, plus a deep ink
 `#110D16` for text. Type: Fraunces (display) / Instrument Sans (text) / JetBrains Mono (data).
 
@@ -68,8 +94,8 @@ Cross-page links are plain anchors on purpose: with `output: "export"`, Next's c
 prefetch requests files static hosts don't serve, which logs 404s.
 
 Navigation is a glassmorphic top bar (translucent, blurred, lit top edge; the hero runs beneath it) with a
-highlighted Chartreuse "Index" pill — shine sweep on hover, a soft pulse ring, and a hamburger that folds
-into an X — which opens a glass full-screen chapter sheet. The sheet's motion is modelled on Shreekumar B's
+highlighted Chartreuse "Index" pill (shine sweep on hover, a soft pulse ring, and a hamburger that folds
+into an X), which opens a glass full-screen chapter sheet. The sheet's motion is modelled on Shreekumar B's
 portfolio menu: a clip-path wipe (0.45s ease-in-out) with each link rising out of its own mask, staggered
 0.15s + 0.07s per item, and the same sequence in reverse on close. Focus is trapped while open and Escape
 closes it. There is no side rail.

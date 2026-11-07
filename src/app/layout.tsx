@@ -30,7 +30,7 @@ const mono = JetBrains_Mono({
 
 /** Path → curtain label, for the destination name shown while the page changes. */
 const curtainLabels: Record<string, CurtainLabel> = {
-  "/": { index: "", title: "Index" },
+  "/": { index: "", title: "Home" },
   "/work": { index: "", title: "Projects" },
   ...Object.fromEntries(features.map((p) => [`/work/${p.slug}`, { index: p.n, title: p.title }])),
 };
@@ -39,14 +39,14 @@ const curtainHead = `document.documentElement.classList.add('js');try{var s=sess
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — Portfolio`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} | Portfolio`,
+    template: `%s | ${site.name}`,
   },
   description:
     "Computer Science and Engineering undergraduate at Sri Shakthi Institute of Engineering and Technology. Case studies of a safety-gated threat-response system, a synthetic-speech detector, a supply-chain console and a database project.",
   authors: [{ name: site.name, url: site.github }],
   openGraph: {
-    title: `${site.name} — Portfolio`,
+    title: `${site.name} | Portfolio`,
     description:
       "Systems that have to be trusted: safety-gated automation, speech forensics and decision support.",
     type: "website",

@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && node scripts/verify-content.mjs",
-    "verify": "node scripts/verify-content.mjs"
+    "verify": "node scripts/verify-content.mjs",
+    "logos": "node scripts/make-logos.mjs"
   },
   "dependencies": {
     "next": "16.4.5",
@@ -25,6 +26,7 @@
     "eslint": "^9.39.0",
     "eslint-config-next": "16.4.5",
     "sharp": "^0.34.0",
+    "simple-icons": "^16.36.0",
     "tailwindcss": "4.3.5",
     "typescript": "^5.9.0"
   }

@@ -4,7 +4,7 @@
  */
 const gates = [
   ["Authorization", "Is the role allowed to execute responses at all?"],
-  ["Policy", "Is the action known — and is it below Tier C?"],
+  ["Policy", "Is the action known, and is it below Tier C?"],
   ["Kill switch", "Has automated response been halted?"],
   ["Target scope", "Is the target valid and not a critical asset?"],
   ["Blast radius", "Fewer than five active blocks or isolations?"],
@@ -41,8 +41,7 @@ export function Gates() {
         ))}
       </ol>
       <figcaption>
-        Gate names and order from <code>backend/response/safety_gates.py</code>. Questions paraphrased from
-        the code.
+        Gate names and order as implemented. The questions are paraphrased from the code.
       </figcaption>
     </figure>
   );

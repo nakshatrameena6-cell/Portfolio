@@ -17,7 +17,7 @@ export type Decision = { title: string; body: string; src: Source };
 
 export type Authorship = "solo" | "lead" | "shared";
 
-export type VisualId = "gates" | "channels" | "loop" | "schema";
+export type VisualId = "gates" | "channels" | "loop";
 
 export type CaseStudy = {
   problem: string;
@@ -31,6 +31,9 @@ export type CaseStudy = {
   /** Optional first-person reflection; left empty until the author supplies one. */
   reflection?: string;
 };
+
+/** A real screenshot or capture of the project. When absent, the project's diagram is shown. */
+export type Shot = { src: string; alt: string; w: number; h: number; caption?: string };
 
 export type Project = {
   slug: string;
@@ -50,6 +53,8 @@ export type Project = {
   live?: string;
   facts: Fact[];
   visual?: VisualId;
+  /** Real capture; add one at public/projects/<slug>.webp and set this (see README). */
+  shot?: Shot;
   caseStudy?: CaseStudy;
 };
 

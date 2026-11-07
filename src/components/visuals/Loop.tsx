@@ -3,7 +3,7 @@
  * redistribution, human review, audit. The review node is the product.
  */
 const stages = [
-  { k: "Capture", d: "voice · photo · form" },
+  { k: "Capture", d: "voice, photo, form" },
   { k: "Forecast", d: "demand with ranges" },
   { k: "Risk", d: "stock-out detection" },
   { k: "Redistribute", d: "OR-Tools proposal" },
@@ -58,7 +58,7 @@ export function Loop() {
           Humans decide.
         </text>
         <text x={CX} y={CY + 58} textAnchor="middle" className="loop__sub loop__sub--core">
-          approve · modify · reject · escalate
+          approve, modify, reject or escalate
         </text>
       </svg>
       <figcaption>

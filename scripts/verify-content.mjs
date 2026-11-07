@@ -11,25 +11,18 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 
 const { projects } = await import("../src/content/projects.ts");
-const { capabilities } = await import("../src/content/capabilities.ts");
 
 let failures = 0;
 const fail = (msg) => { failures++; console.error("✗", msg); };
 const ok = (msg) => console.log("✓", msg);
 
-const titles = new Set(projects.map((p) => p.title));
-const extra = new Set(["FoundersConnect", "EasyGrade", "GraphX"]); // smaller repos without their own entry
-for (const g of capabilities)
-  for (const it of g.items)
-    for (const s of it.seenIn)
-      if (!titles.has(s) && !extra.has(s)) fail(`capability "${it.name}" cites unknown project "${s}"`);
 for (const p of projects)
   if (p.tier === "feature" && !p.caseStudy) fail(`${p.slug}: feature without a case study`);
-ok(`${projects.length} projects, ${capabilities.length} capability groups checked`);
+ok(`${projects.length} projects checked`);
 
 const dir = process.env.REPOS_DIR;
 if (!dir) {
-  console.log("REPOS_DIR not set — skipped repository checks.");
+  console.log("REPOS_DIR not set, skipped repository checks.");
   process.exit(failures ? 1 : 0);
 }
 
