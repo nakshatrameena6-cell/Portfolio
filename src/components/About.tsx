@@ -1,9 +1,8 @@
-import { Dial } from "./Dial";
+import Image from "next/image";
 import { site } from "@/content/site";
 
 /**
- * About. One large statement, then a short working note and a quiet aside about
- * the name. No portrait: the dial stands in as the mark.
+ * About. One large statement, then a short working note beside a portrait.
  */
 export function About() {
   return (
@@ -37,13 +36,16 @@ export function About() {
             </p>
           </div>
 
-          <aside className="about__name" data-reveal style={{ ["--d" as string]: 2 }} aria-label="About the name">
-            <Dial className="about__dial" />
-            <p>
-              <i lang="sa">{site.gloss.term}</i>
-            </p>
-            <p>{site.gloss.meaning}.</p>
-          </aside>
+          <figure className="about__photo" data-reveal style={{ ["--d" as string]: 2 }}>
+            <Image
+              src="/portrait.webp"
+              alt="Portrait of Nakshatra S.V, smiling, in a denim jacket against a teal wall."
+              width={960}
+              height={1200}
+              sizes="(min-width: 900px) 30vw, 100vw"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </div>
     </section>

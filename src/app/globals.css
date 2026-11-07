@@ -896,27 +896,19 @@ p {
 .about__text b {
   color: var(--accent);
 }
-.about__name {
-  display: grid;
-  justify-items: start;
-  gap: 4px;
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-}
-.about__name p {
+.about__photo {
   margin: 0;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--panel);
 }
-.about__name i {
-  font-family: var(--f-display);
-  font-size: 44px;
-  line-height: 1.1;
-}
-.about__dial {
-  width: 96px;
-  height: 96px;
-  margin-bottom: 14px;
-  color: var(--fg);
+.about__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 @media (min-width: 900px) {
   .about__grid {

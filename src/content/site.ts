@@ -15,11 +15,6 @@ export const site = {
   github: "https://github.com/nakshatrameena6-cell",
   email: "nakshatrameena6@gmail.com" as string | null,
   linkedin: "https://www.linkedin.com/in/nakshatra-s-v-427656364/" as string | null,
-  /** Sanskrit gloss shown in the opening composition. */
-  gloss: {
-    term: "nakṣatra",
-    meaning: "a star; one of the 27 lunar mansions",
-  },
 } as const;
 
 export const repoUrl = (repo: string) => `${site.github}/${repo}`;
